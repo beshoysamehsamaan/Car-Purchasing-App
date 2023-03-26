@@ -1,0 +1,42 @@
+body{
+	display: flex;
+	justify-content: left;
+	align-items: left;
+	/*gap:10px;*/
+	flex-direction: column;
+	height: 100vh;
+}
+.photofile{
+	margin-top: 230px;
+	
+}
+
+#display_image{
+	width: 375px;
+	height: 211px;
+	border: 1px solid black;
+	background-position: left;
+	background-size: cover;
+}
+.price{
+	height: 19px;
+}
+.menu{
+	float: left;
+	 width: 23.33%;
+ /*padding-left: -1200px;*/
+  margin-left: 10px;
+}
+
+.AddBtn{
+	margin-left: 630px;
+	width: 100px;
+	height: 30px;
+	background-color: transparent;
+}
+
+/*.cardetails{
+	float: left;
+  width: 23.33%;
+  margin-left: 20px;
+  }*/
