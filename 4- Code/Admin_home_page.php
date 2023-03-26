@@ -6,12 +6,12 @@
 
 
 <body>
-<a href="Add_car.html">
+<a href="AddCar.php">
 <button type="button" style="float:right; margin-top:20px; margin-left:20px;" >Add Car</button>
 </a>
-<a href="Add_admin">
+<!--<a href="Add_admin">
 <button type="button" style="float:right; margin-top:20px; margin-left:20px;">Update car</button>
-</a>
+</a>-->
 <br><br><br><br><br><br>
 
 
@@ -36,21 +36,24 @@ while($row = mysqli_fetch_array($query_run))
 		<table style="display: inline-block">
 	<tr>
 		<td>
-			<?php echo '<img src="data:image;base64, '.base64_encode($row ['image']).'" alt = "image" style="width:420px; height:300px; padding:20px;">';?> 
+			<?php echo '<img src="data:image;base64, '.base64_encode($row ['Photo']).'" alt = "image" style="width:420px; height:300px; padding:20px;">';?> 
 		</td>
 	</tr>
 	<tr>	
-		<td ><b> <?php echo $row['price'] ?></b> </td><!--.'style=" padding-left: -200px;"'-->
-		<td><b style="margin-left:-240px;"> <?php echo $row['color'] ?> </b></td>
+		<td ><b> <?php echo $row['Price'] ?></b> </td><!--.'style=" padding-left: -200px;"'-->
+		<td><b style="margin-left:-240px;"> <?php echo $row['Model'] ?> </b></td>
 	</tr>	
 	<tr>
-		<td><b> <?php echo $row['brand'] ?> </b></td>
-		<td><b style="margin-left: -240px;"> <?php echo $row['id'] ?> </b></td>
+		<td><b> <?php echo $row['BrandName'] ?> </b></td>
+		<td><b style="margin-left: -240px;"> <?php echo $row['Car_ID'] ?> </b></td>
+	</tr>
+	<tr>
+		<td><b> <?php echo $row['Description'] ?> </b></td>
 	</tr>
 	<tr>
 		<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 		<button type="button"  style="background:darkred;  padding: 4px 7px;">
-		<a style="text-decoration:none; color:white;"  href="delete-process.php?id=<?php echo $row["id"]; ?>"> Delete</a>
+		<a style="text-decoration:none; color:white;"  href="delete-process.php?Car_ID=<?php echo $row["Car_ID"]; ?>"> Delete</a>
 	</button></td>
 	</tr>
 </table>

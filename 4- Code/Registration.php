@@ -8,7 +8,6 @@
     session_start(); 
 
 		if (isset($_POST['registerBtn'])){ 
-			// get all of the form data 
 			$firstname = $_POST['firstN']; 
 			$lastname = $_POST['lastN']; 
 			$email = $_POST['email']; 
