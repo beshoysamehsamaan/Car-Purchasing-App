@@ -7,7 +7,9 @@ href="AddCar.css" />
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
   </head>
 <body>
+<br><br>
   <form method="post" enctype="multipart/form-data"><!--action="/action_page.php"-->
+  <center>
   	<div id="display_image" name="img" >
 
 
@@ -20,7 +22,7 @@ href="AddCar.css" />
 
 <input id="Upload" type="file" multiple="multiple" name="_photos" accept="image/*" style="visibility: hidden">-->
  
- </div>
+ </div></center>
   <br><br> <br><br>
  
   <b><label class="menu"for="cars">Brand</label></b>

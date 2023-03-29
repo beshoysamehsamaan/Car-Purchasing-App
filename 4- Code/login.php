@@ -8,7 +8,7 @@
 
     //check if user came from HTTP Post 
     if(isset($_POST['loginbtn'])){
-    
+		
         $uname=$_POST['email'];
         $password=$_POST['pass'];
 
@@ -19,6 +19,8 @@
 		$queryA = mysqli_query($conn, $sqlA);
         
         if(mysqli_num_rows($queryU)==1){
+			$uid=$_GET['User_ID'];
+			echo $uid;
             echo " You Have Successfully Logged in as User";
 			header("Location: User_home_page.php");
             exit();
@@ -40,12 +42,13 @@
     <head>
         <meta charset="utf-8-8">
         <title>Login</title>	 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css"/>
+		
     </head>
 
-    <body>
+    <body >
         <div class="center">
-                <h2>Ready to Buy Your New Car ?</h2>
+				<center><h2 >Ready to Buy Your Car</h2></center>
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method = "POST">
                 
                 
@@ -71,3 +74,4 @@
             <div>
     </div>
 </body>
+</html>

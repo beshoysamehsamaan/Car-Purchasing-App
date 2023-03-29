@@ -46,7 +46,7 @@
 
 <body>	
      <div class="center">
-	    <h2>Ready To Buy Your Dream Car ?</h2>
+	    <center><h2 >Ready to Buy Your Car</h2></center>
 		<form method="post">
 
 			<div class="txt_field">
