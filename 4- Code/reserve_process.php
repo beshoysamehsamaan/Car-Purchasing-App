@@ -8,9 +8,10 @@ $db = new connect();
 $conn = $db->connection();
 if (isset($_GET['varname'])){
 $carid=$_GET['varname'];
-echo "welcome <b>$carid</b>";
+$userid=$_GET['varLoginName'];
 
-$sql = "UPDATE car SET Status = 1 WHERE Car_ID = '".$carid."' "; 
+
+$sql = "UPDATE car SET Status = 1 , User_Res_ID = '".$userid."'  WHERE Car_ID = '".$carid."' "; 
 
 if (mysqli_query($conn, $sql))
 { 

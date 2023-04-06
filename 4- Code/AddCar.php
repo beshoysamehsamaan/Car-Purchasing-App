@@ -4,11 +4,16 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 	<style>
 	body {
-  background-color: #f5f5f5;
+  background-image: url("homea.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+	overflow:hidden;
+	background-color:red;
 }
 
 .container {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 

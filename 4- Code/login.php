@@ -14,15 +14,16 @@
 
         $sqlU="select * from user where Email='".$uname."'AND Password ='".$password."' limit 1 ";
 		$sqlA="select * from admin where Email='".$uname."'AND Password ='".$password."' limit 1 ";
+		
 
         $queryU = mysqli_query($conn, $sqlU);
 		$queryA = mysqli_query($conn, $sqlA);
         
         if(mysqli_num_rows($queryU)==1){
-			$uid=$_GET['User_ID'];
-			echo $uid;
+			$row = mysqli_fetch_array($queryU);
+			$uid=$row['User_ID'];
             echo " You Have Successfully Logged in as User";
-			header("Location: User_home_page.php");
+			header("Location: User_home_page.php?varLoginName=".$uid);
             exit();
         }
 		else if(mysqli_num_rows($queryA)==1){

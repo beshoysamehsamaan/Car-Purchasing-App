@@ -59,17 +59,7 @@ table.hello:hover {
 
 
 <body>
-<div class="topnav">
- 
-  <div class="search-container">
-  <form method="post" action="">
-    <label for="searchTerm">Search:</label>
-    <input type="text" name="searchTerm">
-    <button type="submit" name="search">Search</button>
-</form>
 
-  </div>
-  
 </div>
 <a href="login.php">
 <button type="button" class="button" style="float:right; margin-top:20px; margin-left:20px;" >Logout</button>
@@ -77,6 +67,19 @@ table.hello:hover {
 <a href="AddCar.php">
 <button type="button" class="button" style="float:right; margin-top:20px; margin-left:20px;" >Add Car</button>
 </a>
+
+<div style="float:right; margin-top:15px; margin-left:20px;" class="topnav">
+  <div class="search-container">
+  <form method="post" action="">
+    <label  for="searchTerm"></label>
+    <input type="text" name="searchTerm">
+    <button type="submit" name="search">Search</button>
+</form>
+  </div>
+  
+</div>
+  
+
 
 <!--<a href="Add_admin">
 <button type="button" style="float:right; margin-top:20px; margin-left:20px;">Update car</button>

@@ -73,15 +73,13 @@ table.hello:hover {
 <button type="button" class="button" style="float:right; margin-top:20px; margin-left:20px;" >Logout</button>
 </a>
 
-<div class="topnav">
- 
+<div style="float:right; margin-top:20px; margin-left:20px;" class="topnav">
   <div class="search-container">
   <form method="post" action="">
-    <label for="searchTerm">Search:</label>
+    <label  for="searchTerm"></label>
     <input type="text" name="searchTerm">
     <button type="submit" name="search">Search</button>
 </form>
-
   </div>
   
 </div>
@@ -105,6 +103,11 @@ if (isset($_POST['search'])) { // Check if form is submitted with search term
 } else {
     $query = "SELECT * FROM car WHERE Status = 0";
 }
+
+if (isset($_GET['varLoginName'])){
+$uid=$_GET['varLoginName'];
+}
+
 $query_run = mysqli_query($conn,$query);
 while($row = mysqli_fetch_array($query_run))
 {
@@ -132,13 +135,14 @@ while($row = mysqli_fetch_array($query_run))
 	</tr>
 	<tr>
 		<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<a href="reserve_process.php?varname=<?php echo $varid ?>">
+		<a href="reserve_process.php?varLoginName=<?php echo $uid?>& varname=<?php echo $varid?>">
 		<button type="submit" value='Post' style="background:#4169E1;  padding: 10px 20px;">Reserve</button>
 		</a>
 		
 	</td>
 	</tr>
 </table>
+
 	<?php
 
 }
