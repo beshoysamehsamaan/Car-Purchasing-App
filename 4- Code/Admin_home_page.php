@@ -12,6 +12,28 @@ body{
 	overflow:hidden;
 	background-color:red;
 }
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 10px 10px;
+  margin-top: 12px;
+  font-size: 17px;
+  height: 15px;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 8px 10px;
+  margin-top: 13px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
 table{
 	background:white;
 	border-radius: 20px;
@@ -37,6 +59,18 @@ table.hello:hover {
 
 
 <body>
+<div class="topnav">
+ 
+  <div class="search-container">
+  <form method="post" action="">
+    <label for="searchTerm">Search:</label>
+    <input type="text" name="searchTerm">
+    <button type="submit" name="search">Search</button>
+</form>
+
+  </div>
+  
+</div>
 <a href="login.php">
 <button type="button" class="button" style="float:right; margin-top:20px; margin-left:20px;" >Logout</button>
 </a>
@@ -62,11 +96,16 @@ require_once 'connect.php';
 $db = new connect();
 $conn = $db->connection();
 
-$query = "select * from car";
-$query_run = mysqli_query($conn,$query);
+if (isset($_POST['search'])) { // Check if form is submitted with search term
+    $searchTerm = $_POST['searchTerm']; // Get search term from form
+    $query = "SELECT * FROM car WHERE Model LIKE '%$searchTerm%' OR BrandName LIKE '%$searchTerm%' OR Price LIKE '%$searchTerm%'";
+} else {
+    $query = "SELECT * FROM car";
+}$query_run = mysqli_query($conn,$query);
 while($row = mysqli_fetch_array($query_run))
 {
 	?>
+	
 	
 <table class="hello" style="display: inline-block ; width:300px ; border-radius: 30px;">
 	<tr>
@@ -94,6 +133,7 @@ while($row = mysqli_fetch_array($query_run))
 	</td>
 	</tr>
 </table>
+
 	<?php
 
 

@@ -1,57 +1,117 @@
 <html>
-<head>
-<link rel="stylesheet" 
-type="text/css" 
-href="AddCar.css" />   
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<style>
+	body {
+  background-color: #f5f5f5;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+
+.card-header {
+  background-color: #3d3d3d;
+  color: white;
+}
+
+.card-body {
+  background-color: #fff;
+}
+
+.menu {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.photofile {
+  background-color: #3d3d3d;
+  color: white;
+  margin-top: 20px;
+}
+
+.photofile:hover {
+  background-color: #424242;
+}
+.AddBtn, .cancel-btn {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.AddBtn:hover, .cancel-btn:hover {
+  background-color: #777;
+}
+
+
+ 
+
+	</style>
   </head>
-<body>
-<br><br>
-  <form method="post" enctype="multipart/form-data"><!--action="/action_page.php"-->
-  <center>
-  	<div id="display_image" name="img" >
-
-
-<label class="btn .btn photofile">
-<i class="fa fa-image"></i> Upload Image<input type="file" style="display: none;" accept="image/png, image/jpg, image/jpeg" name="Photo" id="image_input"><!--" name="imagefilebtn"-->
-</label>
-<!---<input type="file" value="Upload image" class="photofile custom-file-input"  accept="image/png, image/jpg, image/jpeg" name="photo" id="image_input">-->
-  <!--  <label class="custom-file-input" for="Upload" >
-</label>
-
-<input id="Upload" type="file" multiple="multiple" name="_photos" accept="image/*" style="visibility: hidden">-->
- 
- </div></center>
-  <br><br> <br><br>
- 
-  <b><label class="menu"for="cars">Brand</label></b>
-    <b><label class="menu"for="cars">Model</label></b>
-    <b><label class="menu"for="cars">Price</label></b>
-	<b><label class="menu"for="cars">Description</label></b>
-
-   <br><br>
-  <select class="menu" name="Brand" id="Brand">
-    <option value="Audi">Audi</option>
-    <option value="Saab">Saab</option>
-    <option value="Opel">Opel</option>
-    <option value="Volvo">Volvo</option>
-  </select>
-   <select class="menu" name="Model" id="Model">
-    <option value="Black">Black</option>
-    <option value="Red">Red</option>
-    <option value="Gray">Gray</option>
-  </select>
-  <input class="menu price" type="number" name="price" placeholder="Enter car price" style="height:25px;"  required>
-    <input class="menu Description" type="text" name="Description" placeholder="Enter car Description" style="height:25px;"  required>
-
-  
-  <br><br><br><br>
-  <input class="AddBtn" type="submit" name="submit" value="Add">
-</form>
-<script src="AddCar.js"></script>
-</body>
+  <body>
+    <form method="post" enctype="multipart/form-data">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header text-center">
+                <h3>Add Car</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="image_input" class="btn .btn-block photofile">
+                    <i class="fa fa-image"></i> Upload Image
+                  </label>
+                  <input type="file" style="display: none;" accept="image/png, image/jpg, image/jpeg" name="Photo" id="image_input">
+                </div>
+                <div class="form-group">
+                  <label for="Brand" class="menu">Brand:</label>
+                  <select class="form-control" name="Brand" id="Brand">
+                    <option value="Toyota">Toyota</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Volvo">Volvo</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="Model" class="menu">Model:</label>
+                  <select class="form-control" name="Model" id="Model">
+                    <option value="Toyota ">Toyota </option>
+                    <option value="Ford ">Ford </option>
+                    <option value="Honda ">Honda </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="price" class="menu">Price:</label>
+                  <input class="form-control" type="number" name="price" placeholder="Enter car price" required>
+                </div>
+                <div class="form-group">
+                  <label for="Description" class="menu">Description:</label>
+                  <textarea class="form-control" name="Description" placeholder="Enter car description" required></textarea>
+                </div>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-primary AddBtn" name="submit">Add</button>
+				  <button type="button" class="btn btn-secondary cancel-btn" onclick="window.location.href='Admin_home_page.php'">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <script src="AddCar.js"></script>
+  </body>
 </html>
+
 
 <?php
 session_start();
@@ -84,5 +144,4 @@ else{
 }
   }   
 }
-//}
 ?>

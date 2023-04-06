@@ -76,10 +76,12 @@ table.hello:hover {
 <div class="topnav">
  
   <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+  <form method="post" action="">
+    <label for="searchTerm">Search:</label>
+    <input type="text" name="searchTerm">
+    <button type="submit" name="search">Search</button>
+</form>
+
   </div>
   
 </div>
@@ -97,7 +99,12 @@ if( empty(session_id()) && !headers_sent()){
 require_once 'connect.php';
 $db = new connect();
 $conn = $db->connection();
-$query = "select * from car";
+if (isset($_POST['search'])) { // Check if form is submitted with search term
+    $searchTerm = $_POST['searchTerm']; // Get search term from form
+    $query = "SELECT * FROM car WHERE Status = 0 AND Model LIKE '%$searchTerm%' OR BrandName LIKE '%$searchTerm%' OR Price LIKE '%$searchTerm%'";
+} else {
+    $query = "SELECT * FROM car WHERE Status = 0";
+}
 $query_run = mysqli_query($conn,$query);
 while($row = mysqli_fetch_array($query_run))
 {
