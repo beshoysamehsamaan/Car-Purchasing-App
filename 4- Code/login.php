@@ -7,8 +7,7 @@
 
 
     //check if user came from HTTP Post 
-    if(isset($_POST['loginbtn'])){
-		
+    if(isset($_POST['loginbtn'])){	
         $uname=$_POST['email'];
         $password=$_POST['pass'];
 
@@ -22,18 +21,19 @@
         if(mysqli_num_rows($queryU)==1){
 			$row = mysqli_fetch_array($queryU);
 			$uid=$row['User_ID'];
-            echo " You Have Successfully Logged in as User";
+          //  echo " You Have Successfully Logged in as User";
 			header("Location: User_home_page.php?varLoginName=".$uid);
             exit();
         }
 		else if(mysqli_num_rows($queryA)==1){
-			echo " You Have Successfully Logged in as Admin";
+		//	echo " You Have Successfully Logged in as Admin";
 			header("Location: Admin_home_page.php");
             exit();
 		}
         else{
-            echo " Faild to Login";
-            exit();
+			$error_msg = "Invalid email or password";
+            //echo " Faild to Login";
+          //  exit();
         }
     }
 ?>
@@ -69,7 +69,10 @@
                 Not a member? <a href="Registration.php">Signup</a>
                     </div>
                 
-                
+                   <!-- Display error message if there is one -->
+        <?php if (!empty($error_msg)) { ?>
+            <div style="color: red"><?php echo $error_msg ?></div>
+        <?php } ?>
                 </form>
             </div>
             <div>

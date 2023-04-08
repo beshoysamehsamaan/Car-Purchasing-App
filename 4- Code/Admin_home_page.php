@@ -54,6 +54,30 @@ table.hello:hover {
   margin: 4px 2px;
   cursor: pointer;
 }
+.pop-up-message {
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 5px;
+  animation: fade-out 3s forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
 </style>
 </head>
 
@@ -101,8 +125,17 @@ $conn = $db->connection();
 
 if (isset($_POST['search'])) { // Check if form is submitted with search term
     $searchTerm = $_POST['searchTerm']; // Get search term from form
-    $query = "SELECT * FROM car WHERE Model LIKE '%$searchTerm%' OR BrandName LIKE '%$searchTerm%' OR Price LIKE '%$searchTerm%'";
-} else {
+    if (!empty($searchTerm)) {
+        $query = "SELECT * FROM car WHERE (Model LIKE '%$searchTerm%' OR BrandName LIKE '%$searchTerm%' OR Price LIKE '%$searchTerm%')";
+        $result = mysqli_query($conn, $query);
+
+        if(mysqli_num_rows($result) == 0) {
+            echo  '<div class="pop-up-message" style="background-color: #f44336;">please try another brand or price</div>';
+        }
+    } else {
+        echo '<div class="pop-up-message" style="background-color: #f44336;">please try another brand or price</div>';
+        $query = "SELECT * FROM car";
+}} else {
     $query = "SELECT * FROM car";
 }$query_run = mysqli_query($conn,$query);
 while($row = mysqli_fetch_array($query_run))

@@ -17,7 +17,8 @@
 			
 			$sql="insert into user (FirstName,LastName,Email,Password,Phone,Address) values('".$firstname."','".$lastname."','".$email."','".$passwd."','".$phone."','".$address."')";
 			$query = mysqli_query($conn, $sql);
-			
+			 header("Location: User_home_page.php");
+                exit();
 			
 	
 			// verify all the required form data was entered
@@ -25,6 +26,7 @@
 			// make sure the password meets the min strength requirements
 			if ( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false ){
 				// next code block
+				
 			}
 			else
 				$error_msg = 'Your password is not strong enough. Please use another.';
