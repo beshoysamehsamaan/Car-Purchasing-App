@@ -127,17 +127,27 @@ $conn=$db->connection();
 //public function AddUser(){
   //if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['number']) && !isset($_SESSION['relatedfaculty']) ){ 
    // echo "1111111111";
+   
+   function check_price($my_string){
+				$regex = is_numeric($my_string);
+				return $regex ;
+				}
     if (isset($_POST['submit'])){//&&!empty($_POST['submit']))
       //echo "2222222222222";
      // $photo=$_POST['Photo'];
     $Photo=addslashes(file_get_contents($_FILES['Photo']['tmp_name']));
       $BrandName=$_POST['Brand'];
       $Model=$_POST['Model'];
-      $Price=$_POST['price'];
+	  		if(!check_price($_POST['price'])){
+				 $Price = "";
+			}else{
+				$Price=$_POST['price'];
+			}
 	  $Description=$_POST['Description'];
 
-if($Price<1){
-  echo"<script> alert('Enter Car price')</script>";
+if($Price = "" && $Photo = NULL ){
+			$message = "You Entered invalid Data or Missed";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 }
 else{ 
   $Add="insert into car (price,BrandName,Model,Photo,Description) VALUES('".$Price."','".$BrandName."','".$Model."','".$Photo."','".$Description."')";
