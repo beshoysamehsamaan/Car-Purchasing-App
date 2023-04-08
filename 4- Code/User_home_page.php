@@ -63,6 +63,31 @@ table.hello:hover {
   margin: 4px 2px;
   cursor: pointer;
 }
+.pop-up-message {
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 5px;
+  animation: fade-out 3s forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
 
 </style>
 
@@ -99,10 +124,21 @@ $db = new connect();
 $conn = $db->connection();
 if (isset($_POST['search'])) { // Check if form is submitted with search term
     $searchTerm = $_POST['searchTerm']; // Get search term from form
-    $query = "SELECT * FROM car WHERE Status = 0 AND Model LIKE '%$searchTerm%' OR BrandName LIKE '%$searchTerm%' OR Price LIKE '%$searchTerm%'";
+    if (!empty($searchTerm)) {
+        $query = "SELECT * FROM car WHERE Status = 0 AND (Model LIKE '%$searchTerm%' OR BrandName LIKE '%$searchTerm%' OR Price LIKE '%$searchTerm%')";
+        $result = mysqli_query($conn, $query);
+
+        if(mysqli_num_rows($result) == 0) {
+            echo  '<div class="pop-up-message" style="background-color: #f44336;">please try another brand or price</div>';
+        }
+    } else {
+        echo '<div class="pop-up-message" style="background-color: #f44336;">please try another brand or price</div>';
+        $query = "SELECT * FROM car WHERE Status = 0";
+    }
 } else {
     $query = "SELECT * FROM car WHERE Status = 0";
 }
+
 
 if (isset($_GET['varLoginName'])){
 $uid=$_GET['varLoginName'];
@@ -146,33 +182,7 @@ while($row = mysqli_fetch_array($query_run))
 	<?php
 
 }
-/*?id=<?php echo $row["Car_ID"]; ?>
-/*
-$sql = "DELETE FROM car WHERE id=1";
 
-if ($conn->query($sql) === TRUE) {
-  echo "Record deleted successfully";
-} else {
-  echo "Error deleting record: " . $conn->error;
-}
-
-
-$sql = "SELECT id, price, brand FROM car Where id=1";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "" . $row["id"]. " " . $row["brand"]. "<br>";
-  }
-} else {
-  echo "0 re
-  sults";
-}
-
-
-$conn->close();
-*/
 ?>
 
 
