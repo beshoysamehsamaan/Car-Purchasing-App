@@ -7,6 +7,8 @@
 
 
     //check if user came from HTTP Post 
+
+				
     if(isset($_POST['loginbtn'])){	
         $uname=$_POST['email'];
         $password=$_POST['pass'];

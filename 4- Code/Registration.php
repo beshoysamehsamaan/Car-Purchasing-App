@@ -6,35 +6,60 @@
     
     // check to see if there is a user already logged in, if so redirect them 
     session_start(); 
+	
+	function check_string($my_string){
+				$regex = preg_match('/[^a-zA-Z0-9_-]/', $my_string);
+				return $regex ;
+				}
+	function check_phone($my_string){
+				$regex = is_numeric($my_string);
+				return $regex ;
+				}
+	function check_pass($my_pass){
+				$len = strlen($my_pass);
+				return $len ;
+				}
 
-		if (isset($_POST['registerBtn'])){ 
-			$firstname = $_POST['firstN']; 
-			$lastname = $_POST['lastN']; 
+		if (isset($_POST['registerBtn'])){  
+			
+			if(check_string($_POST['firstN'])){
+				 $firstname = "";
+			}else{
+				$firstname = $_POST['firstN'];
+			}
+			if(check_string($_POST['lastN'])){
+				 $lastname = "";
+			}else{
+				$lastname = $_POST['lastN'];
+			} 
 			$email = $_POST['email']; 
-			$passwd = $_POST['password'];
-			$phone = $_POST['phone'];
+			if(check_pass($_POST['password']) < 8 ){
+				 $passwd = "";
+			}else{
+				$passwd = $_POST['password'];
+			} 
+			if(!check_phone($_POST['phone'])){
+				 $phone = "";
+			}else{
+				$phone = $_POST['phone'];
+			}
+			
 			$address = $_POST['address'];
 			
-			$sql="insert into user (FirstName,LastName,Email,Password,Phone,Address) values('".$firstname."','".$lastname."','".$email."','".$passwd."','".$phone."','".$address."')";
-			$query = mysqli_query($conn, $sql);
-			 header("Location: User_home_page.php");
+			if ($firstname != ""&& $lastname != "" && $passwd != "" && $phone != "" ){
+				$sql="insert into user (FirstName,LastName,Email,Password,Phone,Address) values('".$firstname."','".$lastname."','".$email."','".$passwd."','".$phone."','".$address."')";
+				$query = mysqli_query($conn, $sql);
+				header("Location: User_home_page.php");
                 exit();
+			}
+			else{
+				$message = "You Entered invalid Data";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+			}
 			
-	
-			// verify all the required form data was entered
-			if ($email != "" && $passwd != ""){
-			// make sure the password meets the min strength requirements
-			if ( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false ){
-				// next code block
-				
-			}
-			else
-				$error_msg = 'Your password is not strong enough. Please use another.';
-		
-	}
-	else
-		$error_msg = 'Please fill out all required fields.';
-			}
+			
+			
+		}
 
 ?>
 <!--<!DOCTYPE html>-->
