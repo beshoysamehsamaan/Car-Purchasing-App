@@ -47,7 +47,22 @@
 			$address = $_POST['address'];
 			
 			if ($firstname != ""&& $lastname != "" && $passwd != "" && $phone != "" ){
-				$sql="insert into user (FirstName,LastName,Email,Password,Phone,Address) values('".$firstname."','".$lastname."','".$email."','".$passwd."','".$phone."','".$address."')";
+				
+				$sql=
+				"insert into user (FirstName,LastName,Email,Password,Phone,Address)
+						values('".$firstname."','".$lastname."','".$email."','".$passwd."','".$phone."','".$address."')";
+				/*
+				$sql=
+				" 
+				BEGIN
+					IF NOT EXISTS (SELECT Email FROM user 
+									WHERE Email = '".$email."')
+					BEGIN
+						insert into user (FirstName,LastName,Email,Password,Phone,Address)
+						values('".$firstname."','".$lastname."','".$email."','".$passwd."','".$phone."','".$address."')
+					END
+				END";
+				*/
 				$query = mysqli_query($conn, $sql);
 				header("Location: User_home_page.php");
                 exit();

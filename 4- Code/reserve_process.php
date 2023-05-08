@@ -15,6 +15,7 @@ $sql = "UPDATE car SET Status = 1 , User_Res_ID = '".$userid."'  WHERE Car_ID = 
 
 if (mysqli_query($conn, $sql))
 { 
+
     echo "Car is reserved Successfully."; 
 } 
 else
