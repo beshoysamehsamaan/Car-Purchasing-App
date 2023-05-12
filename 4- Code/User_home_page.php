@@ -2,17 +2,18 @@
 <html>
 <head>
  <script>
-    function showAlert() {
-      var pay = prompt("Please your depost from 1000 to 2000");
-      if (pay != null && pay >= 1000 && pay <= 2000 ) {
-        alert("Thank you " + pay + ", your reservation has been received!");
-      }
-	  else {
-        // Do nothing if the user cancels the alert dialog
-        return false;
-      }
+  function showAlert() {
+    if (confirm("Are you sure to pay $1000 as a deposit?")) {
+	      alert("Thank you, your reservation has been received!");
+
+	     // window.location.href = "reserve_process.php?varname=<?php echo $carid; ?>&varLoginName=<?php echo $userid; ?>";
+    } else {
+      // Do nothing if the user cancels the confirmation dialog
+      return false;
     }
-  </script>
+  }
+</script>
+
 <title> User home page </title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="pop_up_message.css">
