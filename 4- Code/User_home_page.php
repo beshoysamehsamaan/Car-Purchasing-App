@@ -6,8 +6,7 @@
     if (confirm("Are you sure to pay $1000 as a deposit?")) {
 	      alert("Thank you, your reservation has been received!");
 
-	     // window.location.href = "reserve_process.php?varname=<?php echo $carid; ?>&varLoginName=<?php echo $userid; ?>";
-    } else {
+   } else {
       // Do nothing if the user cancels the confirmation dialog
       return false;
     }
