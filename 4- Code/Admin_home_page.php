@@ -4,6 +4,7 @@
 <title> Admin home page </title>
 <style>
 
+
 body{
 	background-image: url("homea.jpg");
 	background-size: cover;
@@ -11,7 +12,9 @@ body{
 	height: 100vh;
 	overflow:hidden;
 	background-color:red;
+	
 }
+
 .topnav .search-container {
   float: right;
 }

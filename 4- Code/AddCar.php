@@ -61,9 +61,22 @@
  
 
 	</style>
+	<script>
+      function validateForm() {
+        var fileInput = document.getElementById("image_input");
+        var errorMessage = document.getElementById("image_error");
+
+        if (fileInput.files.length === 0) {
+          errorMessage.textContent = "Please upload an image.";
+          return false;
+        }
+
+        return true;
+      }
+    </script>
   </head>
   <body>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6">
@@ -77,6 +90,7 @@
                     <i class="fa fa-image"></i> Upload Image
                   </label>
                   <input type="file" style="display: none;" accept="image/png, image/jpg, image/jpeg" name="Photo" id="image_input">
+                  <span id="image_error" style="color: red;" ></span>
                 </div>
                 <div class="form-group">
                   <label for="Brand" class="menu">Brand:</label>
@@ -90,9 +104,9 @@
                 <div class="form-group">
                   <label for="Model" class="menu">Model:</label>
                   <select class="form-control" name="Model" id="Model">
-                    <option value="Toyota ">Toyota </option>
-                    <option value="Ford ">Ford </option>
-                    <option value="Honda ">Honda </option>
+                    <option value="Toyota ">Crola</option>
+                    <option value="Ford ">Yares</option>
+                    <option value="Honda ">focus</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -124,18 +138,16 @@ session_start();
 require_once 'connect.php';
 $db =new connect();
 $conn=$db->connection();
-//public function AddUser(){
-  //if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['number']) && !isset($_SESSION['relatedfaculty']) ){ 
-   // echo "1111111111";
    
    function check_price($my_string){
-				$regex = is_numeric($my_string);
-				return $regex ;
+				if ($my_string > 0){
+					$regex = is_numeric($my_string);
+					return $regex ;
+				}else
+					return 0 ;
 				}
-    if (isset($_POST['submit'])){//&&!empty($_POST['submit']))
-      //echo "2222222222222";
-     // $photo=$_POST['Photo'];
-    $Photo=addslashes(file_get_contents($_FILES['Photo']['tmp_name']));
+    if (isset($_POST['submit'])){
+	  $Photo=addslashes(file_get_contents($_FILES['Photo']['tmp_name']));
       $BrandName=$_POST['Brand'];
       $Model=$_POST['Model'];
 	  		if(!check_price($_POST['price'])){
@@ -145,18 +157,16 @@ $conn=$db->connection();
 			}
 	  $Description=$_POST['Description'];
 
-if($Price = "" && $Photo = NULL ){
+		if($Price == "" || $Photo == NULL ){
 			$message = "You Entered invalid Data or Missed";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-}
-else{ 
-  $Add="insert into car (price,BrandName,Model,Photo,Description) VALUES('".$Price."','".$BrandName."','".$Model."','".$Photo."','".$Description."')";
-
-  $query=mysqli_query($conn,$Add);
-    
-    if ($query==TRUE){
-    	echo"<script> alert('car added successfully')</script>";
-}
+		}else{ 
+			$Add="insert into car (price,BrandName,Model,Photo,Description) VALUES('".$Price."','".$BrandName."','".$Model."','".$Photo."','".$Description."')";
+			$query=mysqli_query($conn,$Add);
+			if ($query==TRUE){
+				echo"<script> alert('car added successfully')</script>";
+				}
+		
   }   
 }
 ?>
